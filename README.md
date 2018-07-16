@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Zingle/PHP-Enum.svg?branch=master)](https://travis-ci.org/Zingle/PHP-Enum)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Zingle/PHP-Enum/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Zingle/PHP-Enum/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Zingle/PHP-Enum/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Zingle/PHP-Enum/?branch=master)
 
 Provides a simple enum like interface for constants. 
 
