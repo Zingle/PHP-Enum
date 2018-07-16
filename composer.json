@@ -1,0 +1,26 @@
+{
+  "name": "zingle-com/php-enum",
+  "description": "PHP Enum like objects.",
+  "type": "laravel-package",
+  "license": "MIT",
+  "authors": [{
+    "name": "Zingle",
+    "homepage": "https://github.com/Zingle/PHP-Enum"
+  },{
+    "name": "Zachary Quintana",
+    "homepage": "https://github.com/zquintana"
+  }],
+  "require": {
+    "php": "~7.1",
+    "phootwork/collection": "^1.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "ZingleCom\\Enum\\Tests\\": "tests",
+      "ZingleCom\\Enum\\": "src"
+    }
+  }
+}
