@@ -18,6 +18,10 @@ $ composer require zingle-com/php-enum
 
 - PHP 7.1
 
+## Documentation
+
+See [documentation](docs/index.md).
+
 ## Testing
 
 ~~~ bash
