@@ -1,7 +1,7 @@
 {
   "name": "zingle-com/php-enum",
   "description": "PHP Enum like objects.",
-  "type": "laravel-package",
+  "type": "library",
   "license": "MIT",
   "authors": [{
     "name": "Zingle",
