@@ -83,4 +83,12 @@ abstract class AbstractEnum implements EnumInterface
     {
         return $value === $this->getValue();
     }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return strval($this->getValue());
+    }
 }
