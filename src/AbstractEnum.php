@@ -17,11 +17,6 @@ abstract class AbstractEnum implements EnumInterface
     private static $generator;
 
     /**
-     * @var MetaInterface
-     */
-    private static $meta;
-
-    /**
      * @var string
      */
     private $constantName;
@@ -41,14 +36,13 @@ abstract class AbstractEnum implements EnumInterface
      */
     public function __construct($value)
     {
-        self::$generator = GeneratorFactory::create();
-        self::$meta      = self::$generator->get($this);
+        $meta = self::getMeta();
 
-        if (!self::$meta->isValid($value)) {
+        if (!$meta->isValid($value)) {
             throw new InvalidValueException($value);
         }
 
-        $this->constantName = self::$meta->getConstantName($value);
+        $this->constantName = $meta->getConstantName($value);
         $this->value        = $value;
     }
 
@@ -98,12 +92,32 @@ abstract class AbstractEnum implements EnumInterface
     }
 
     /**
+     * @return GeneratorInterface
+     */
+    private static function getGenerator(): GeneratorInterface
+    {
+        if (null === self::$generator) {
+            self::$generator = GeneratorFactory::create();
+        }
+
+        return self::$generator;
+    }
+
+    /**
+     * @return MetaInterface
+     */
+    private static function getMeta(): MetaInterface
+    {
+        return self::getGenerator()->get(get_called_class());
+    }
+
+    /**
      * Makes this compatible with Symfony
      * 
      * @return array
      */
     public static function getOptions(): array 
     {
-        return array_flip(self::$meta->getConstants()->toArray());
+        return array_flip(self::getMeta()->getConstants()->toArray());
     }
 }

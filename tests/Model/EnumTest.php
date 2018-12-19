@@ -44,7 +44,7 @@ class EnumTest extends TestCase
     {
         $generator = new Generator();
         $testEnum  = new TestEnum(TestEnum::TEST_1);
-        $meta = $generator->get($testEnum);
+        $meta = $generator->get(TestEnum::class);
 
         $this->assertInstanceOf(Meta::class, $meta);
         $this->assertEquals(TestEnum::TEST_1, $testEnum->getValue());

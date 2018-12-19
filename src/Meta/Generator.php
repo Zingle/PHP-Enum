@@ -28,29 +28,31 @@ class Generator implements GeneratorInterface
     }
 
     /**
-     * @param AbstractEnum $enum
+     * @param string|AbstractEnum $enumClass
      * @return MetaInterface
      * @throws EnumException
      */
-    public function get(AbstractEnum $enum): MetaInterface
+    public function get(string $enumClass): MetaInterface
     {
-        $key = get_class($enum);
-        if (!$this->meta->has($key)) {
-            $this->meta->set($key, $this->create($enum));
+        if (!$this->meta->has($enumClass)) {
+            $this->meta->set($enumClass, $this->create($enumClass));
         }
 
-        return $this->meta->get($key);
+        return $this->meta->get($enumClass);
     }
 
     /**
-     * @param AbstractEnum $enum
+     * @param string $enumClass
      * @return MetaInterface
      * @throws EnumException
      */
-    private function create(AbstractEnum $enum): MetaInterface
+    private function create(string $enumClass): MetaInterface
     {
         try {
-            $refl = new \ReflectionClass($enum);
+            $refl = new \ReflectionClass($enumClass);
+            if (!$refl->isSubclassOf(AbstractEnum::class)) {
+                throw new EnumException(sprintf('Enum\'s must be of type %s', AbstractEnum::class));
+            }
 
             return new Meta($refl->getConstants());
         } catch (\ReflectionException $e) {

@@ -12,9 +12,11 @@ use ZingleCom\Enum\MetaInterface;
 interface GeneratorInterface
 {
     /**
-     * @param AbstractEnum $enum
+     * @param string|AbstractEnum $enumClass
+     *
      * @return MetaInterface
+     *
      * @throws EnumException
      */
-    public function get(AbstractEnum $enum): MetaInterface;
+    public function get(string $enumClass): MetaInterface;
 }
