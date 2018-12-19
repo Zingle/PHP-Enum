@@ -118,6 +118,6 @@ abstract class AbstractEnum implements EnumInterface
      */
     public static function getOptions(): array 
     {
-        return array_flip(self::getMeta()->getConstants()->toArray());
+        return self::getMeta()->getConstants()->toArray();
     }
 }
