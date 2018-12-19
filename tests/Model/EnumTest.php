@@ -2,6 +2,7 @@
 
 namespace ZingleCom\Enum\Tests\Model;
 
+use phootwork\collection\Map;
 use PHPUnit\Framework\TestCase;
 use ZingleCom\Enum\Exception\SizeMismatchException;
 use ZingleCom\Enum\Meta;
@@ -37,9 +38,7 @@ class EnumTest extends TestCase
     }
 
     /**
-     * @throws \ZingleCom\Enum\Exception\EnumException
-     * @throws \ZingleCom\Enum\Exception\InvalidValueException
-     * @throws \ZingleCom\Enum\Exception\MissingValueException
+     * @throws \ReflectionException
      */
     public function testGeneratorAndModel()
     {
@@ -51,5 +50,13 @@ class EnumTest extends TestCase
         $this->assertEquals(TestEnum::TEST_1, $testEnum->getValue());
         $this->assertEquals('TEST_1', $testEnum->getConstantName());
         $this->assertEquals('Test 1', $testEnum->getDisplayName());
+
+        $refl = new \ReflectionClass(TestEnum::class);
+        $constants = $refl->getConstants();
+        $options = new Map(TestEnum::getOptions());
+        $options->each(function ($key, $value) use ($constants) {
+            $this->assertArrayHasKey($value, $constants);
+            $this->assertEquals($key, $constants[$value]);
+        });
     }
 }

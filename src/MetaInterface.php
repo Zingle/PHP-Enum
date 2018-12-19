@@ -2,6 +2,7 @@
 
 namespace ZingleCom\Enum;
 
+use phootwork\collection\Map;
 use ZingleCom\Enum\Exception\MissingValueException;
 
 
@@ -26,4 +27,9 @@ interface MetaInterface
      * @throws MissingValueException
      */
     public function getConstantName($value): string;
+
+    /**
+     * @return Map
+     */
+    public function getConstants(): Map;
 }

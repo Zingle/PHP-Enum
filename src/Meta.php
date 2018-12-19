@@ -67,4 +67,12 @@ class Meta implements MetaInterface
 
         return $flipped[$value];
     }
+
+    /**
+     * @return Map
+     */
+    public function getConstants(): Map
+    {
+        return $this->constants;
+    }
 }
