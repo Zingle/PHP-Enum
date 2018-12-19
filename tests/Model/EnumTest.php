@@ -55,8 +55,8 @@ class EnumTest extends TestCase
         $constants = $refl->getConstants();
         $options = new Map(TestEnum::getOptions());
         $options->each(function ($key, $value) use ($constants) {
-            $this->assertArrayHasKey($value, $constants);
-            $this->assertEquals($key, $constants[$value]);
+            $this->assertArrayHasKey($key, $constants);
+            $this->assertEquals($value, $constants[$key]);
         });
     }
 }
