@@ -54,7 +54,18 @@ class Generator implements GeneratorInterface
                 throw new EnumException(sprintf('Enum\'s must be of type %s', AbstractEnum::class));
             }
 
-            return new Meta($refl->getConstants());
+            $constants = [];
+            $reflConstants = $refl->getReflectionConstants();
+            foreach ($reflConstants as $reflConstant) {
+                // don't add private constants to value value list.
+                if ($reflConstant->isPrivate()) {
+                    continue;
+                }
+
+                $constants[$reflConstant->getName()] = $reflConstant->getValue();
+            }
+
+            return new Meta($constants);
         } catch (\ReflectionException $e) {
             throw new EnumException($e->getMessage(), $e->getCode(), $e);
         }
