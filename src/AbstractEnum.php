@@ -29,7 +29,9 @@ abstract class AbstractEnum implements EnumInterface
 
     /**
      * AbstractEnum constructor.
+     *
      * @param mixed $value
+     *
      * @throws Exception\EnumException
      * @throws Exception\MissingValueException
      * @throws InvalidValueException
@@ -76,6 +78,7 @@ abstract class AbstractEnum implements EnumInterface
 
     /**
      * @param mixed $value
+     *
      * @return bool
      */
     public function is($value): bool
@@ -119,5 +122,33 @@ abstract class AbstractEnum implements EnumInterface
     public static function getOptions(): array 
     {
         return self::getMeta()->getConstants()->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    public static function getValues(): array
+    {
+        return self::getMeta()->getConstants()->values()->toArray();
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public static function isValid($value): bool
+    {
+        return self::getMeta()->getConstants()->values()->contains($value);
+    }
+
+    /**
+     * @param string $constant
+     *
+     * @return bool
+     */
+    public static function isValidConstant(string $constant): bool
+    {
+        return self::getMeta()->getConstants()->keys()->contains($constant);
     }
 }

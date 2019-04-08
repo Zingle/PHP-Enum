@@ -11,6 +11,7 @@
     "homepage": "https://github.com/zquintana"
   }],
   "require": {
+    "ext-mbstring": "*",
     "php": "~7.1",
     "phootwork/collection": ">=1.5"
   },

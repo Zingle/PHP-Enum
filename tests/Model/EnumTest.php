@@ -59,4 +59,23 @@ class EnumTest extends TestCase
             $this->assertEquals($value, $constants[$key]);
         });
     }
+
+    /**
+     * Test enum static methods
+     */
+    public function testStaticMethods()
+    {
+        $options = TestEnum::getOptions();
+        $values = TestEnum::getValues();
+        $this->assertCount(3, $values);
+
+        foreach (array_combine(array_values($options), $values) as $k => $v) {
+            $this->assertEquals($k, $v);
+            $this->assertTrue(TestEnum::isValid($v));
+        }
+
+        foreach (array_keys($options) as $key) {
+            $this->assertTrue(TestEnum::isValidConstant($key));
+        }
+    }
 }
